@@ -1,13 +1,18 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
+require FCPATH . 'vendor/autoload.php';
 
-class Produk extends CI_Controller {
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+
+class Produk extends CI_Controller
+{
 
 	public function index()
 	{
 		//$data['barang'] = $this->Model_produk->getBarang()->result_array();
 		$this->load->model('Model_produk', 'barang');
-		
+
 		//load library
 		$this->load->library('pagination');
 
@@ -20,7 +25,7 @@ class Produk extends CI_Controller {
 		}
 		// config pagination
 		$this->db->select('barang.id , barang.nama_barang, barang.harga, barang.stock, barang.id_kategori, kategori.nama_kategori');
-        $this->db->join('kategori', 'kategori.id = barang.id_kategori', 'inner');
+		$this->db->join('kategori', 'kategori.id = barang.id_kategori', 'inner');
 		$this->db->like('nama_barang', $data['keyword']);
 		$this->db->or_like('nama_kategori', $data['keyword']);
 		$this->db->from('barang');
@@ -40,5 +45,26 @@ class Produk extends CI_Controller {
 		$this->load->view('templates/base_dashboard/topbar');
 		$this->load->view('dashboard/produk', $data);
 		$this->load->view('templates/base_dashboard/footer');
+	}
+	public function spreadsheet_export()
+	{
+
+
+		header('Content-Type: application/vnd.ms-excel');
+		header('Content-Disposition: attachment;filename="product.xlsx"');
+		$spreadsheet = new Spreadsheet();
+		$sheet = $spreadsheet->getActiveSheet();
+		$sheet->setCellValue('A1', 'Nama Barang');
+		$sheet->setCellValue('B1', 'Stock');
+		$barang = $this->Model_produk->getAllbarang();
+		$a = 2;
+		foreach ($barang as $b) { 
+			$sheet->setCellValue('A' . $a, $b['nama_barang']);
+			$sheet->setCellValue('B' . $a, $b['stock']);
+			$a++;
+		}
+
+		$write = new Xlsx($spreadsheet);
+		$write->save("php://output");
 	}
 }

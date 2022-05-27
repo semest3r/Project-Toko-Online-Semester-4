@@ -50,4 +50,12 @@ class Model_transaksi extends CI_Model
         $this->db->update('transaksi', $data, $where);
     }
 
+    public function getAlltransaksi()
+    {
+        $this->db->select('transaksi.id AS idtransaksi, user.name AS nama_user, pembeli.id AS idpembeli, pembeli.name AS nama_pembeli, pembeli.notelp AS notelp_pembeli, pembeli.email AS email_pembeli, pembeli.alamat AS alamat_pembeli, transaksi.status, transaksi.total_harga');
+        $this->db->from('transaksi');
+        $this->db->join('pembeli', 'pembeli.id = transaksi.id_pembeli', 'inner');
+        $this->db->join('user', 'user.id = transaksi.id_user', 'inner');
+        return $this->db->get('')->result_array();
+    }
 }

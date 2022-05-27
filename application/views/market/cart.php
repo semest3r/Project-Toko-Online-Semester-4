@@ -21,10 +21,6 @@ function updateCartItem(obj, rowid){
             <td>subtotal<?= $cb['subtotal']?></td>
             <button class="" onclick="return confirm('Are you sure to delete item?')?window.location.href='<?php echo base_url('Cart/removeItem/'.$cb['rowid']); ?>':false;"><i class="itrash"></i> delete</button> </td>
             <?php }?>
-            <FORM>
-                <?= form_open('') ?>
-                <?= form_hidden('') ?>
-            </FORM>
     </div>
     <a href="<?= base_url('') ?>">Back</a>
     <a href="<?= base_url('Checkout')?>">Checkout</a>

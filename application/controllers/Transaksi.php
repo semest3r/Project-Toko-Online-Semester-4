@@ -1,5 +1,9 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
+require FCPATH . 'vendor/autoload.php';
+
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class Transaksi extends CI_Controller
 {
@@ -35,5 +39,30 @@ class Transaksi extends CI_Controller
 		$this->load->view('templates/base_dashboard/topbar');
 		$this->load->view('dashboard/transaksi', $data);
 		$this->load->view('templates/base_dashboard/footer');
+	}
+
+	public function spreadsheet_export()
+	{
+
+
+		header('Content-Type: application/vnd.ms-excel');
+		header('Content-Disposition: attachment;filename="product.xlsx"');
+		$spreadsheet = new Spreadsheet();
+		$sheet = $spreadsheet->getActiveSheet();
+		$sheet->setCellValue('A1', 'Nama Barang');
+		$sheet->setCellValue('B1', 'Approver');
+		$sheet->setCellValue('C1', 'Total Transaksi');
+		$transaksi = $this->Model_transaksi->getAlltransaksi();
+		$a = 2;
+		foreach ($transaksi as $t) { 
+			$sheet->setCellValue('A' . $a, $t['nama_pembeli']);
+			$sheet->setCellValue('B' . $a, $t['nama_user']);
+			$sheet->setCellValue('C' . $a, $t['total_harga']);
+			$a++;
+		}
+
+		$write = new Xlsx($spreadsheet);
+		$write->save("php://output");
+		redirect('Transaksi');
 	}
 }

@@ -2,6 +2,9 @@
     halaman market produk
     <div class="grid grid-cols-1 gap-8 mt-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         <?php foreach ($barang as $b) : ?>
+            <?php if($b['stock'] > 1){
+
+             ?>
             <div class="flex flex-col items-center justify-center w-full max-w-lg mx-auto">
                 <img class="object-cover w-full rounded-md h-72 xl:h-80" src="" alt="T-Shirt">
                 <h4 class="mt-2 text-lg font-medium text-gray-700 "><?= $b['nama_barang']; ?></h4>
@@ -13,6 +16,7 @@
                     <span class="mx-1">Add to cart</span>
                 </a>
             </div>
+            <?php }?>
         <?php endforeach ?>
     </div>
 </div>
