@@ -57,7 +57,7 @@ class Model_transaksi extends CI_Model
     //updateTransaksi digunakan untuk menampilkan data table join transaksi, pembeli, dan user berdasarkan "id" dari table transaksi
     public function updateTransaksi($data = null, $where = null)
     {
-        $this->db->select('transaksi.id AS idtransaksi, user.name AS nama_user, pembeli.id AS idpembeli, pembeli.name AS nama_pembeli, pembeli.notelp AS notelp_pembeli, pembeli.email AS email_pembeli, pembeli.alamat AS alamat_pembeli, transaksi.status');
+        $this->db->select('transaksi.id AS idtransaksi, user.name AS nama_user, pembeli.id AS idpembeli, pembeli.name AS nama_pembeli, pembeli.notelp AS notelp_pembeli, pembeli.email AS email_pembeli, pembeli.alamat AS alamat_pembeli, transaksi.status transaksi.date');
         $this->db->from('transaksi');
         $this->db->join('pembeli', 'pembeli.id = transaksi.id_pembeli', 'inner');
         $this->db->join('user', 'user.id = transaksi.id_user', 'inner');
