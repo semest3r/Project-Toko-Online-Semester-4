@@ -3,28 +3,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Checkout extends CI_Controller {
 
+    //menampilkan halaman Checkout
     function index(){
-        // Redirect if the cart is empty
+        // Redirect jika Cart kosong
         if($this->cart->total_items() <= 0){
             redirect('market_produk/');
         }
         
         $custData = $data = array();
         
-        // If order request is submitted
+        // Jika Cart/Order sudah dimasukkan
         $submit = $this->input->post('placeOrder');
         if(isset($submit)){
             // Form field validation rules
-            $this->form_validation->set_rules('name', 'Name', 'required');
-            $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
-            $this->form_validation->set_rules('alamat', 'Alamat', 'required');
-            $this->form_validation->set_rules('notelp', 'Notelp', 'required');
+            $this->form_validation->set_rules('name', 'Name', 'required',['requerd' => 'Nama Pembeli Harus Diisi']);
+            $this->form_validation->set_rules('email', 'Email', 'required|valid_email',['requerd' => 'Email Harus Diisi', 'valid_email' => 'Email Tidak Valid']);
+            $this->form_validation->set_rules('alamat', 'Alamat', 'required',['requerd' => 'Alamat Harus diisi']);
+            $this->form_validation->set_rules('notelp', 'Notelp', 'required|numeric|min_length[8]|max_length[12]',['requerd' => 'Notelp harud diisi', 'numeric' => 'Notelp tidak valid', 'max_length' => 'maksimal 12 digit', 'min_length' => 'minimal 8 digit']);
             
             // Prepare customer data
             $custData = array(
-                'name'     => strip_tags($this->input->post('name')),
-                'email'     => strip_tags($this->input->post('email')),
-                'alamat'     => strip_tags($this->input->post('alamat')),
+                'name'   => strip_tags($this->input->post('name')),
+                'email'  => strip_tags($this->input->post('email')),
+                'alamat' => strip_tags($this->input->post('alamat')),
                 'notelp' => strip_tags($this->input->post('notelp')),
                 //'status' => strip_tags($this->input->post('status'))
             );
@@ -55,7 +56,7 @@ class Checkout extends CI_Controller {
         // Customer data
         $data['custData'] = $custData;
         
-        // Retrieve cart data from the session
+        // menampilkan data cart dari session
         $data['cartItems'] = $this->cart->contents();
         
         // Pass products data to the view
@@ -80,10 +81,10 @@ class Checkout extends CI_Controller {
             $ordItemData = array();
             $i=0;
             foreach($cartItems as $item){
-                $ordItemData[$i]['id_transaksi']     = $insertOrder;
-                $ordItemData[$i]['id_barang']     = $item['id'];
-                $ordItemData[$i]['total_Barang']     = $item['qty'];
-                $ordItemData[$i]['total_harga_barang']     = $item["subtotal"];
+                $ordItemData[$i]['id_transaksi'] = $insertOrder;
+                $ordItemData[$i]['id_barang'] = $item['id'];
+                $ordItemData[$i]['total_Barang'] = $item['qty'];
+                $ordItemData[$i]['total_harga_barang'] = $item["subtotal"];
                 $i++;
             }
             

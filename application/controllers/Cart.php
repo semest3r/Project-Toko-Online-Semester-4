@@ -3,7 +3,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Cart extends CI_Controller
 {
-
+	//menampilkan halaman Cart
 	public function index()
 	{
 		//Initialize
@@ -13,6 +13,7 @@ class Cart extends CI_Controller
 		$this->load->view('market/cart', $data);
 	}
 
+	//updateItemQty digunakan untuk mengubah jumlah barang yang sudah dipilih di halaman Cart
 	public function updateItemQty()
 	{
 		$update = 0;
@@ -33,7 +34,8 @@ class Cart extends CI_Controller
 		// Return response
 		echo $update ? 'ok' : 'err';
 	}
-
+	
+	//removeItem digunakan untuk menghapus barang yang sudah dipilih di halaman cart
 	public function removeItem($rowid)
 	{
 		// Remove item from cart

@@ -3,9 +3,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Model_produk extends CI_Model
 {
+    //MODEL DATABASE UNTUK CONTROLLER PRODUK
+    //getBarang untuk memanggil table join barang dan kategori dari table barang
     public function getBarang($limit, $start, $keyword = null)
     {
-        $this->db->select('barang.id , barang.nama_barang, barang.harga, barang.stock, barang.id_kategori, kategori.nama_kategori');
+        $this->db->select('barang.id , barang.nama_barang, barang.harga, barang.stock, barang.id_kategori, barang.image, kategori.nama_kategori');
         $this->db->from('barang');
         $this->db->join('kategori', 'kategori.id = barang.id_kategori', 'inner');
         if ($keyword){
@@ -16,44 +18,44 @@ class Model_produk extends CI_Model
 
         return $this->db->get('', $limit, $start)->result_array();
     }
+    
 
-    public function getDetailBarang($where)
-    {
-        $this->db->select('barang.id , barang.nama_barang, barang.harga, barang.stock, kategori.nama_kategori');
-        $this->db->from('barang');
-        $this->db->join('kategori', 'kategori.id = barang.id_kategori', 'inner');
-        return $this->db->get_where('', $where)->result_array();
-    }
-
+    //getAllbarang digunakan untuk memanggil data pada table barang ada pada function Spreadsheet
     public function getAllbarang()
     {
         return $this->db->get('barang')->result_array();
     }
-
-    public function countAllbarang()
+    //hapusBarang digunakan untuk menghapus data barang berdasarkan "id" pada table barang
+    public function hapusBarang($where)
     {
-        return $this->db->get('barang')->num_rows();
-
+        $this->db->where('id', $where);
+        $this->db->delete('barang');
     }
 
-    //menyimpan data ke database
+
+    //MODEL DATABASE UNTUK CONTROLLER Update_Produk
+    //getDetailBarang digunakan untuk memanggil data table join barang dan kategori dari table barang
+    //berdasarkan "id"
+    public function getDetailBarang($where)
+    {
+        $this->db->select('barang.id , barang.nama_barang, barang.harga, barang.stock, barang.image, kategori.nama_kategori');
+        $this->db->from('barang');
+        $this->db->join('kategori', 'kategori.id = barang.id_kategori', 'inner');
+        return $this->db->get_where('', $where)->result_array();
+    }
+    //simpanBarang digunakan untuk menyimpan data yang di input ke table barang
     public function simpanBarang($data = null)
     {
         $this->db->insert('barang', $data);
     }
-
-    
-
+    //getKategori digunakan untuk memanggil data pada table kategori
     public function getKategori()
     {
         return $this->db->get('kategori')->result_array();
     }
 
-    public function getKategoriById($where)
-    {
-        return $this->db->get_where('kategori', $where);
-    }
-
+    //MODEL DATABASE UNTUK CONTROLLER Edit_produk
+    //updateBarang digunakan untuk mengubah data pada table barang
     public function updateBarang($data = null, $where = null)
     {
         $this->db->update('barang', $data, $where);

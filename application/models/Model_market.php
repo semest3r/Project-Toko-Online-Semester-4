@@ -9,6 +9,8 @@ class Model_market extends CI_Model
         $this->kategori = 'kategori';
         
     }
+    //MODEL DATABASE UNTUK CONTROLLER Edit_produk
+    //getMarketProduk digunakan untuk memanggil data table barang jika berdasarkan id row_array jikatidak result_array
     public function getMarketProduk($id = '')
     {   
         $this->db->select('*');
@@ -25,12 +27,10 @@ class Model_market extends CI_Model
         return !empty($result)?$result:false;
     }
     
-    public function getKategoriById($where)
-    {
-        return $this->db->get_where('kategori', $where);
-    }
 
     //Model_Checkout
+    //MODEL DATABASE PADA CONTROLLER Checkout
+    //simpanPembeli digunakan untuk menyimpan data yang diinput ke table pembeli
     public function simpanPembeli($data){
         
         // Insert customer data
@@ -39,7 +39,7 @@ class Model_market extends CI_Model
         // Return the status
         return $insert?$this->db->insert_id():false;
     }
-
+    //insertOrder digunakan untuk menyimpan data transaksi pembelian ke table transaksi
     public function insertOrder($data){
         
         // Insert order data
@@ -49,7 +49,7 @@ class Model_market extends CI_Model
         return $insert?$this->db->insert_id():false;
     }
 
-    //Model Simpan Barang Batch yang di order pada system Checkout
+    //InsertOrderItems digunakan untuk menyimpan data secara Batch yang di order pada system Checkout
     public function insertOrderItems($data = array()) {
         
         // Insert order items
@@ -57,16 +57,6 @@ class Model_market extends CI_Model
 
         // Return the status
         return $insert?true:false;
-    }
-
-    public function getBarangById($where)
-    {
-        return $this->db->get_where('kategori', $where);
-    }
-
-    public function updateBarang($data = null, $where = null)
-    {
-        $this->db->update('barang', $data, $where);
     }
 }
 

@@ -61,4 +61,10 @@ class Edit_produk extends CI_Controller {
             redirect('Produk');
 			}
 	}
+
+    public function Hapus_barang($where)
+    {
+		$data['barang'] = $this->Model_produk->hapusBarang($where);
+        redirect('Produk');
+    }
 }

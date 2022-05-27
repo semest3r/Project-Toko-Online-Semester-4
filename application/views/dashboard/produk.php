@@ -50,9 +50,10 @@
                             <?php
                             $a = 1;
                             foreach ($barang as $b) : ?>
-                                <tr class="bg-white dark:bg-slate-700 ">
+                                <tr class="bg-white dark:bg-slate-700">
                                     <td class="px-5 py-5 border-b border-gray-500 text-sm">
                                         <div class="items-center">
+                                            <img class="w-[5rem] h-[8rem] mx-auto rounded-md" src="<?= base_url('assets/img/upload/'). $b['image'] ?>" alt="">
                                         </div>
                                     </td>
                                     <td class="px-5 py-5 border-b border-gray-500  text-sm">
@@ -76,8 +77,11 @@
                                         </p>
                                     </td>
                                     <td class="px-5 py-5 border-b border-gray-500  text-sm">
-                                        <a href="<?= base_url('Edit_produk/index/') . $b['id']; ?>" class="text-base text-indigo-600 hover:text-indigo-900 dark:text-gray-200">
+                                        <a href="<?= base_url('Edit_produk/index/') . $b['id']; ?>" class="text-base mr-2 pr-3 text-indigo-600 hover:text-indigo-900 dark:text-gray-200">
                                             Edit
+                                        </a>
+                                        <a href="<?= base_url('Edit_produk/Hapus_barang/') . $b['id']; ?>" class="text-base pl-3 text-indigo-600 hover:text-indigo-900 dark:text-gray-200">
+                                            Hapus
                                         </a>
                                     </td>
                                 </tr>

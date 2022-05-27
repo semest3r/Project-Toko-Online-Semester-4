@@ -1,4 +1,4 @@
-        <div class="h-screen p-5 w-11/12 mx-auto ">
+        <div class="h-full p-5 w-11/12 mx-auto ">
             <div class="grid grid-cols-2 shadow-xl rounded-xl bg-white dark:bg-slate-800">
                 <div class="bg-slate-100 dark:bg-gray-800 shadow-lg shadow-gray-900 rounded-lg p-5">
                     <?php foreach($transaksi as $tr) :?>
@@ -53,7 +53,8 @@
                     <?php foreach ($checkout as $cc) : ?>
                         <div class="pb-4">
                             <div class="flex max-w-md mx-auto overflow-hidden bg-white rounded-lg shadow-lg shadow-gray-900 dark:bg-gray-800">
-                                <div class="w-1/3 bg-cover" style="background-image: url('https://images.unsplash.com/photo-1494726161322-5360d4d0eeae?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80')"></div>
+                                <!-- <div class="w-1/3 bg-cover" style="background-image: url()"></div> -->
+                                <img class="w-1/3" src="<?= base_url('assets/img/upload/'). $cc['image']?>" alt="">
                                 <div class="w-2/3 p-4 md:p-4">
                                     <h1 class="text-2xl font-bold text-gray-800 dark:text-white"><?= $cc['nama_barang'] ?></h1>
                                     <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Lorem ipsum dolor sit amet consectetur adipisicing elit In odit</p>
