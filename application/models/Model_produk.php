@@ -14,8 +14,6 @@ class Model_produk extends CI_Model
             $this->db->like('nama_barang', $keyword);
             $this->db->or_like('nama_kategori', $keyword);
         }
-        $this->db->order_by('id');
-
         return $this->db->get('', $limit, $start)->result_array();
     }
     

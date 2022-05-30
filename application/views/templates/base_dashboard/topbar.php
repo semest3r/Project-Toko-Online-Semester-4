@@ -6,11 +6,11 @@
         </div>
         <div class="justify-self-end px-3">
             <span class="inline-block align-middle">
-                <button>+New Jobs</button>
+                <a href="<?= base_url('Login/logout') ?>">Logout</a>
             </span>
         </div>
         <div class="justify-self-end">
-        <button type="button" class="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+        <button type="button" class=" p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
               <span class="sr-only">View notifications</span>
               <!-- Heroicon name: outline/bell -->
               <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
@@ -18,5 +18,4 @@
               </svg>
         </button>
         </div>
-
     </div>

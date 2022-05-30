@@ -32,7 +32,10 @@ class Model_market extends CI_Model
     //simpanPembeli digunakan untuk menyimpan data yang diinput ke table pembeli
     public function simpanPembeli($data)
     {
-
+        if (!array_key_exists("date", $data)) {
+            $date = date_create("", timezone_open("Asia/Bangkok"));
+            $data['date'] = date_format($date, "Y-m-d H:i:s");
+        }
         // Insert customer data
         $insert = $this->db->insert('pembeli', $data);
 

@@ -23,12 +23,18 @@ class Produk extends CI_Controller
 		} else {
 			$data['keyword'] = $this->session->userdata('keyword');
 		}
+
+
 		// config pagination
 		$this->db->select('barang.id , barang.nama_barang, barang.harga, barang.stock, barang.id_kategori, kategori.nama_kategori');
 		$this->db->join('kategori', 'kategori.id = barang.id_kategori', 'inner');
 		$this->db->like('nama_barang', $data['keyword']);
 		$this->db->or_like('nama_kategori', $data['keyword']);
 		$this->db->from('barang');
+
+		$config['base_url'] = 'http://localhost/tailwind/Produk/index';
+		$config['num_links'] = 5;
+
 		$config['total_rows'] = $this->db->count_all_results();
 		$data['total_rows'] = $config['total_rows'];
 		$config['per_page'] = 10;
@@ -58,7 +64,7 @@ class Produk extends CI_Controller
 		$sheet->setCellValue('B1', 'Stock');
 		$barang = $this->Model_produk->getAllbarang();
 		$a = 2;
-		foreach ($barang as $b) { 
+		foreach ($barang as $b) {
 			$sheet->setCellValue('A' . $a, $b['nama_barang']);
 			$sheet->setCellValue('B' . $a, $b['stock']);
 			$a++;

@@ -10,7 +10,7 @@
     <title>Tailwind Project</title>
 </head>
 <body>
-    <div class="mx-auto flex flex-row min-h-full bg-white dark:bg-gray-900 ">
+    <div class="mx-auto flex flex-row min-h-full bg-white ">
         
 
     

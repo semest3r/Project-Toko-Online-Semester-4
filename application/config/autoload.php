@@ -58,7 +58,7 @@ $autoload['packages'] = array();
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array('form_validation', 'database', 'session', 'pagination', 'cart', 'email');
+$autoload['libraries'] = array('form_validation', 'database', 'session', 'cart', 'email');
 
 /*
 | -------------------------------------------------------------------
@@ -89,7 +89,7 @@ $autoload['drivers'] = array();
 |
 |	$autoload['helper'] = array('url', 'file');
 */
-$autoload['helper'] = array('url', 'file', 'date', 'form');
+$autoload['helper'] = array('url', 'file', 'date', 'form', 'tokoelectrik');
 
 /*
 | -------------------------------------------------------------------
@@ -132,4 +132,4 @@ $autoload['language'] = array();
 |
 |	$autoload['model'] = array('first_model' => 'first');
 */
-$autoload['model'] = array('Model_produk','Model_market', 'Model_transaksi');
+$autoload['model'] = array('Model_produk','Model_market', 'Model_transaksi', 'Model_login','Model_Lpenjualan');
