@@ -25,7 +25,7 @@
                 <?php foreach ($laporan_penjualan as $lp) : ?>
                     <tr>
                         <td>
-                            <?= $lp['id_user'] ?>
+                            <?= $lp['name'] ?>
                         </td>
                         <td>
                             <?= $lp['banyak_transaksi'] ?>

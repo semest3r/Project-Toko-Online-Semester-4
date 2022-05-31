@@ -6,5 +6,5 @@
  * Beware that DEFAULT may change over time, so you would want to prepare
  * By allowing your storage to expand past 60 characters (255 would be good)
  */
-echo password_hash("haniah", PASSWORD_DEFAULT);
+echo password_hash("faizy", PASSWORD_DEFAULT);
 ?>

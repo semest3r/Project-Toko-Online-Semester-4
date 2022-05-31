@@ -66,4 +66,24 @@ class Model_market extends CI_Model
         // Return the status
         return $insert ? true : false;
     }
+
+    public function getOrder($id){
+        $this->db->select('transaksi.*, pembeli.name, pembeli.email, pembeli.notelp, pembeli.alamat');
+        $this->db->from('transaksi');
+        $this->db->join('pembeli', 'pembeli.id = transaksi.id_pembeli', 'left');
+        $this->db->where('transaksi.id', $id);
+        $query = $this->db->get();
+        $result = $query->row_array();
+        
+        // Get order items
+        $this->db->select('checkout.*, barang.nama_barang');
+        $this->db->from('checkout');
+        $this->db->join('barang', 'barang.id = checkout.id_barang', 'left');
+        $this->db->where('checkout.id_transaksi', $id);
+        $query2 = $this->db->get();
+        $result['items'] = ($query2->num_rows() > 0)?$query2->result_array():array();
+        
+        // Return fetched data
+        return !empty($result)?$result:false;
+    }
 }

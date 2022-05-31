@@ -106,12 +106,33 @@ class Checkout extends CI_Controller {
         return false;
     }
 
-    function orderSuccess(){
+    function orderSuccess($ordID){
         // Fetch order data from the database
-        //$data['transaksi'] = $this->product->getOrder($ordID);
+        $transaksi = $this->Model_market->getOrder($ordID);
+        $data['transaksi'] = $transaksi;
         
-        // Load order details view
-        $this->load->view('market/checkout_sukses');
+        $config = array(
+            'protocol' => 'smtp',
+            'smtp_host' => 'smtp.mailtrap.io',
+            'smtp_port' => 2525,
+            'smtp_user' => 'f5afd82df79411',
+            'smtp_pass' => 'a5620976a43ac0',
+            'crlf' => "\r\n",
+            'newline' => "\r\n"
+        );
+        $this->load->library('email', $config);
+        $this->email->initialize($config);
+
+        $this->email->from('TokoElectrik@test.test');
+        $this->email->to($transaksi['email']);
+        $this->email->subject('Update Transaksi');
+        $this->email->message($this->load->view('email_template', $data, true));
+        $this->email->set_mailtype('html');
+        if ($this->email->send()) {
+            $this->load->view('market/checkout_sukses');
+        } else {
+            show_error($this->email->print_debugger());
+        }
     }
     
 

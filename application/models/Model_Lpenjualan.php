@@ -13,7 +13,10 @@ class Model_Lpenjualan extends CI_Model
 
     public function getPenjualan()
     {
-        return $this->db->get('laporan_penjualan')->result_array();
+        $this->db->select('user.*, laporan_penjualan.*');
+        $this->db->from('laporan_penjualan');
+        $this->db->join('user', 'user.id = laporan_penjualan.id_user');
+        return $this->db->get('')->result_array();
     }
 
     public function getDetailPenjualan($where)
