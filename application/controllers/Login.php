@@ -30,16 +30,19 @@ class Login extends CI_Controller
         $username = htmlspecialchars($this->input->post('username', true));
         $password = $this->input->post('password', true);
 
-        $user = $this->Model_login->cekData(['username' => $username])->row_array();
+        $user = $this->Model_user->cekData(['username' => $username])->row_array();
         //jika usernya ada
         if ($user) {
             //jika user sudah aktif
-            if ($user['is_active'] == 2) {
+            if ($user['is_active'] == 1) {
                 //cek password
                 if (password_verify($password, $user['password'])) {
                     $data = [
+                        'id_user' => $user['id_user'],
                         'username' => $user['username'],
-                        'role_id' => $user['role_id']
+                        'role_id' => $user['role_id'],
+                        'jabatan' => $user['jabatan'],
+                        'status_role' => $user['status_role'],
                     ];
 
                     $this->session->set_userdata($data);

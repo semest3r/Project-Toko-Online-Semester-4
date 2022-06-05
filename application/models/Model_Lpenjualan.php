@@ -28,4 +28,17 @@ class Model_Lpenjualan extends CI_Model
         $this->db->group_by('nama_barang');
         return $this->db->get_where('', $where)->result_array();
     }
+    public function simpanPenjualan($data = null)
+    {
+        $this->db->insert('laporan_penjualan', $data);
+    }
+
+    public function getMonth()
+    {
+        $this->db->select('laporan_penjualan.*');
+        $this->db->select('MONTH(date) as bulan');
+        $this->db->from('laporan_penjualan');
+        $this->db->group_by('bulan');
+        return $this->db->get('')->result_array();
+    }
 }

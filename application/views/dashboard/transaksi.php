@@ -1,4 +1,4 @@
-<div class="container border min-h-screen">
+<div class="container border min-h-screen bg-gray-100">
     <div class="mx-auto max-w-full">
         <div class="pt-4 pb-8 grid grid-cols-10">
             <div class="col-span-10 col-start-1 row-start-1">
@@ -17,7 +17,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-span-10 col-start-1 row-span-1 mt-5">
+            <div class="col-span-10 col-start-1 row-span-1 mt-5 border-t-2 bg-white">
                 <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
                     <table class="min-w-full leading-normal">
                         <thead>

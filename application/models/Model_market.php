@@ -86,4 +86,9 @@ class Model_market extends CI_Model
         // Return fetched data
         return !empty($result)?$result:false;
     }
+
+    public function getKurir()
+    {
+        return $this->db->get('kurir')->result_array();
+    }
 }

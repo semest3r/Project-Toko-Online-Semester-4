@@ -1,5 +1,5 @@
 module.exports = {
-content: ['./application/views/**/*.php'],
+content: ['./application/views/**/*.php', "./node_modules/flowbite/**/*.js"],
   theme: {
     extend: {},
   },
@@ -7,5 +7,6 @@ content: ['./application/views/**/*.php'],
   require('@tailwindcss/typography'),
   require('@tailwindcss/forms'),
   require('@tailwindcss/line-clamp'),
-  require('@tailwindcss/aspect-ratio'),],
+  require('@tailwindcss/aspect-ratio'),
+  require('flowbite/plugin')],
 }

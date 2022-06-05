@@ -1,21 +1,13 @@
 <div class="flex flex-col h-full w-full mx-auto text-center">
-    <div class="flex flex-row justify-items-stretch p-2 border-2 border-cyan-500">
-        <div class="grow">
-            <span class="inline-block align-middle"><h1 class="">
-            </h1></span>
-        </div>
+    <div class="grid justify-items-stretch py-2 h-full border-b-2 border-gray-500">
         <div class="justify-self-end px-3">
-            <span class="inline-block align-middle">
-                <a href="<?= base_url('Login/logout') ?>">Logout</a>
-            </span>
-        </div>
-        <div class="justify-self-end">
-        <button type="button" class=" p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
-              <span class="sr-only">View notifications</span>
-              <!-- Heroicon name: outline/bell -->
-              <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-              </svg>
-        </button>
+            <a href="<?= base_url('Login/logout') ?>" class="flex hover:text-blue-500">
+                <span class="mt-2">
+                    <p class="font-semibold">Log Out</p>
+                </span>
+                <svg class="w-10 h-10 px-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M3 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z" clip-rule="evenodd"></path>
+                </svg>
+            </a>
         </div>
     </div>

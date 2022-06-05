@@ -52,6 +52,8 @@ class Checkout extends CI_Controller {
                 }
             }
         }
+        // Mengambil Data kurir dari database
+        $data['kurir'] = $this->Model_market->getKurir();
         
         // Customer data
         $data['custData'] = $custData;
@@ -69,6 +71,7 @@ class Checkout extends CI_Controller {
             'id_pembeli' => $custID,
             'id_user' => '1',
             'status' => '1',
+            'id_kurir' => $this->input->post('id_kurir'),
             'total_harga' => $this->cart->total()
         );
         $insertOrder = $this->Model_market->insertOrder($ordData);

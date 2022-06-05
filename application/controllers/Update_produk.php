@@ -29,7 +29,7 @@ class Update_produk extends CI_Controller {
         
         $this->form_validation->set_rules('stock', 'Stock', 'required|numeric', [
             'required' => 'Stock Harus Disi',
-            'numeric' => 'Harga Harus Diisi Dengan Angka'
+            'numeric' => 'Stock Harus Diisi Dengan Angka'
         ]);
 
 		$this->load->library('upload', $config);

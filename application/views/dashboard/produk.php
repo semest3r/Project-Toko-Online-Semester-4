@@ -1,6 +1,6 @@
-<div class="container min-h-screen">
+<div class="container min-h-screen bg-gray-100">
     <div class="mx-auto max-w-full">
-        <div class="pt-4 pb-8 grid grid-cols-10 ">
+        <div class="pb-8 grid grid-cols-10 ">
             <div class="col-start-1 row-start-1 py-5 px-5">
                 <h2 class="text-4xl font-bold leading-tight ">
                     Produk
@@ -20,26 +20,26 @@
                     <a href="<?= base_url('Produk/spreadsheet_export'); ?>" class="px-4 py-2 text-base font-semibold rounded-md bg-purple-400 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-purple-200">download</a>
                 </div>
             </div>
-            <div class="row-start-3 col-span-10 px-10 pb-5 mt-5 bg-gray-100 shadow-lg">
+            <div class="row-start-3 col-span-10 px-10 pb-5 mt-5 border-t-2 bg-white shadow-lg">
                 <table class="min-w-full leading-normal">
                     <thead>
                         <tr class="">
-                            <th scope="col" class="px-5 py-5  border-b-2 border-blue-500 text-gray-800 text-sm uppercase font-semibold">
+                            <th scope="col" class="px-5 py-5  border-b-2 border-blue-500 text-gray-800 text-md uppercase font-semibold">
                                 Gambar
                             </th>
-                            <th scope="col" class="px-5 py-5  border-b-2 border-blue-500 text-gray-800 text-sm uppercase font-semibold">
+                            <th scope="col" class="px-5 py-5  border-b-2 border-blue-500 text-gray-800 text-md uppercase font-semibold">
                                 Nama Produk
                             </th>
-                            <th scope="col" class="px-5 py-5  border-b-2 border-blue-500 text-gray-800 text-sm uppercase font-semibold">
+                            <th scope="col" class="px-5 py-5  border-b-2 border-blue-500 text-gray-800 text-md uppercase font-semibold">
                                 Harga
                             </th>
-                            <th scope="col" class="px-5 py-5  border-b-2 border-blue-500 text-gray-800 text-sm uppercase font-semibold">
+                            <th scope="col" class="px-5 py-5  border-b-2 border-blue-500 text-gray-800 text-md uppercase font-semibold">
                                 Stock
                             </th>
-                            <th scope="col" class="px-5 py-5  border-b-2 border-blue-500 text-gray-800 text-sm uppercase font-semibold">
+                            <th scope="col" class="px-5 py-5  border-b-2 border-blue-500 text-gray-800 text-md uppercase font-semibold">
                                 kategori
                             </th>
-                            <th scope="col" class="px-5 py-5  border-b-2 border-blue-500 text-gray-800 text-sm uppercase font-semibold">
+                            <th scope="col" class="px-5 py-5  border-b-2 border-blue-500 text-gray-800 text-md uppercase font-semibold">
                                 Action
                             </th>
                         </tr>

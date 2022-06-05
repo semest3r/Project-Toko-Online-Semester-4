@@ -27,10 +27,13 @@ class Dashboard extends CI_Controller {
 
 	public function index()
 	{
+		$data['user'] = $this->session->userdata();
+		$data['bulan'] = $this->Model_Lpenjualan->getMonth();
+
 		$this->load->view('templates/base_dashboard/header');
 		$this->load->view('templates/base_dashboard/sidebar');
 		$this->load->view('templates/base_dashboard/topbar');
-		$this->load->view('dashboard/dashboard');
+		$this->load->view('dashboard/dashboard', $data);
 		$this->load->view('templates/base_dashboard/footer');
 	}
 }

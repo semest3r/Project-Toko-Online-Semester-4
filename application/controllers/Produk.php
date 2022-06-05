@@ -25,13 +25,14 @@ class Produk extends CI_Controller
 		}
 
 
-		// config pagination
+		// config Search Keyword
 		$this->db->select('barang.id , barang.nama_barang, barang.harga, barang.stock, barang.id_kategori, kategori.nama_kategori');
 		$this->db->join('kategori', 'kategori.id = barang.id_kategori', 'inner');
 		$this->db->like('nama_barang', $data['keyword']);
 		$this->db->or_like('nama_kategori', $data['keyword']);
 		$this->db->from('barang');
 
+		//config pagination
 		$config['base_url'] = 'http://localhost/tailwind/Produk/index';
 		$config['num_links'] = 5;
 
@@ -72,5 +73,61 @@ class Produk extends CI_Controller
 
 		$write = new Xlsx($spreadsheet);
 		$write->save("php://output");
+	}
+
+	//Function untuk menampilkan halaman Kategori
+	public function Kategori()
+	{
+		$data['kategori'] = $this->Model_produk->getKategori();
+
+		$this->load->view('templates/base_dashboard/header');
+		$this->load->view('templates/base_dashboard/sidebar');
+		$this->load->view('templates/base_dashboard/topbar');
+		$this->load->view('dashboard/kategori', $data);
+		$this->load->view('templates/base_dashboard/footer');
+	}
+
+	public function CreateKategori()
+	{
+		$data = [
+			'nama_kategori' => $this->input->post('nama_kategori', true)
+		];
+		$this->Model_produk->createKategori($data);
+		redirect('Produk/Kategori');
+	}
+
+
+	public function hapusKategori($where)
+	{
+		$data['kategori'] = $this->Model_produk->hapusKategori($where);
+		redirect('Produk/Kategori');
+	}
+
+	//Controller function untuk halaman Kurir
+	public function Kurir()
+	{
+		$data['kurir'] = $this->Model_produk->getKurir();
+
+		$this->load->view('templates/base_dashboard/header');
+		$this->load->view('templates/base_dashboard/sidebar');
+		$this->load->view('templates/base_dashboard/topbar');
+		$this->load->view('dashboard/kurir', $data);
+		$this->load->view('templates/base_dashboard/footer');
+	}
+	public function CreateKurir()
+	{
+		$data = [
+			'nama_kurir' => $this->input->post('nama_kurir', true),
+			'kode_kurir' => $this->input->post('kode_kurir', true),
+		];
+		$this->Model_produk->createKurir($data);
+		redirect('Produk/Kurir');
+	}
+
+
+	public function hapusKurir($where)
+	{
+		$data['kurir'] = $this->Model_produk->hapusKurir($where);
+		redirect('Produk/Kurir');
 	}
 }

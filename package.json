@@ -4,7 +4,8 @@
   "description": "What is CodeIgniter ###################",
   "main": "tailwind.config.js",
   "dependencies": {
-    "-": "^0.0.1"
+    "-": "^0.0.1",
+    "flowbite": "^1.4.7"
   },
   "devDependencies": {
     "@tailwindcss/aspect-ratio": "^0.4.0",

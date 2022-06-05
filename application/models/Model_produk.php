@@ -46,11 +46,8 @@ class Model_produk extends CI_Model
     {
         $this->db->insert('barang', $data);
     }
-    //getKategori digunakan untuk memanggil data pada table kategori
-    public function getKategori()
-    {
-        return $this->db->get('kategori')->result_array();
-    }
+
+
 
     //MODEL DATABASE UNTUK CONTROLLER Edit_produk
     //updateBarang digunakan untuk mengubah data pada table barang
@@ -59,4 +56,37 @@ class Model_produk extends CI_Model
         $this->db->update('barang', $data, $where);
     }
 
+    //MODEL DATABASE UNTUK CONTROLLER PRODUK/KATEGORI
+    //getKategori digunakan untuk memanggil data pada table kategori
+    public function getKategori()
+    {
+        return $this->db->get('kategori')->result_array();
+    }
+    
+    public function createKategori($data = null)
+    {
+        $this->db->insert('kategori', $data);
+    }
+    public function hapusKategori($where)
+    {
+        $this->db->where('id', $where);
+        $this->db->delete('kategori');
+    }
+
+    //MODEL DATABASE UNTUK CONTROLLER PRODUK/Kurir
+    //getKategori digunakan untuk memanggil data pada table kategori
+    public function getKurir()
+    {
+        return $this->db->get('kurir')->result_array();
+    }
+    
+    public function createKurir($data = null)
+    {
+        $this->db->insert('kurir', $data);
+    }
+    public function hapusKurir($where)
+    {
+        $this->db->where('id', $where);
+        $this->db->delete('kurir');
+    }
 }
