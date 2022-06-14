@@ -7,6 +7,11 @@ use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class Transaksi extends CI_Controller
 {
+	public function __construct()
+    {
+        parent::__construct();
+        cek_login();
+    }
 
 	public function index()
 	{
@@ -49,8 +54,6 @@ class Transaksi extends CI_Controller
 
 	public function spreadsheet_export()
 	{
-
-
 		header('Content-Type: application/vnd.ms-excel');
 		header('Content-Disposition: attachment;filename="product.xlsx"');
 		$spreadsheet = new Spreadsheet();
@@ -70,5 +73,18 @@ class Transaksi extends CI_Controller
 		$write = new Xlsx($spreadsheet);
 		$write->save("php://output");
 		redirect('Transaksi');
+	}
+	public function pdfDownload()
+	{
+		$data = array();
+        $data['transaksi'] = $this->Model_transaksi->getDetailTransaksi(['transaksi.id' => $this->uri->segment(4)]);
+		$data['checkout'] = $this->Model_transaksi->getDetailCheckout(['id_transaksi' => $this->uri->segment(4)]);
+		$this->load->view('user_list', $data);
+        $html = $this->output->get_output();
+        $this->load->library('pdf');
+        $this->dompdf->loadHtml($html);
+        $this->dompdf->setPaper('A4', 'landscape');
+        $this->dompdf->render();
+        $this->dompdf->stream("welcome.pdf", array("Attachment" => 0));
 	}
 }

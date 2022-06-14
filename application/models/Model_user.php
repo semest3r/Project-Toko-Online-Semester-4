@@ -41,4 +41,10 @@ class Model_user extends CI_Model
     {
         return $this->db->get('aktifasi')->result_array();
     }
+
+    function deleteUser($where)
+    {
+        $this->db->where('id', $where);
+        $this->db->delete('user');
+    }
 }

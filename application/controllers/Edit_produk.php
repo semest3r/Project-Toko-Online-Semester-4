@@ -2,6 +2,12 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Edit_produk extends CI_Controller {
+    
+	public function __construct()
+    {
+        parent::__construct();
+        cek_login();
+    }
 
 	public function index()
 	{
@@ -27,9 +33,7 @@ class Edit_produk extends CI_Controller {
         $this->form_validation->set_rules('harga', 'Harga', 'required|numeric', [
             'required' => 'Harga Harus Disi',
             'numeric' => 'Harga Harus Diisi Dengan Angka'
-        ]);
-
-        
+        ]);       
         $this->form_validation->set_rules('stock', 'Stock', 'required|numeric', [
             'required' => 'Stock Harus Disi',
             'numeric' => 'Harga Harus Diisi Dengan Angka'
@@ -46,9 +50,10 @@ class Edit_produk extends CI_Controller {
         } else {
             if ($this->upload->do_upload('image')) {
                 $image = $this->upload->data();
+                unlink('assets/img/upload/' . $this->input->post('old_pict', TRUE));
                 $gambar = $image['file_name'];
             } else {
-                $gambar = 'default.jpg';
+                $gambar = $this->input->post('old_pict', TRUE);
             }
             $data = [
                 'nama_barang' => $this->input->post('nama_barang', true),

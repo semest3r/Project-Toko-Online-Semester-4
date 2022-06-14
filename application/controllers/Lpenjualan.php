@@ -1,7 +1,18 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
+require FCPATH . 'vendor/autoload.php';
 
-class Lpenjualan extends CI_Controller {
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+
+class Lpenjualan extends CI_Controller
+{
+	public function __construct()
+	{
+		parent::__construct();
+		cek_login();
+	}
+
 
 	public function index()
 	{
@@ -24,6 +35,26 @@ class Lpenjualan extends CI_Controller {
 		$this->load->view('templates/base_dashboard/footer');
 	}
 
+	public function spreadsheet_export()
+	{
+		header('Content-Type: application/vnd.ms-excel');
+		header('Content-Disposition: attachment; filename="laporan_penjualan.xlsx"');
+		$spreadsheet = new Spreadsheet();
+		$sheet = $spreadsheet->getActiveSheet();
+		$sheet->setCellValue('B2', 'Nama Barang');
+		$sheet->setCellValue('C2', 'Jumlah');
+		$a = 3;
+		$checkout = $this->Model_Lpenjualan->getDetailPenjualan(['date' => $this->uri->segment(3)]);
+		foreach ($checkout as $c) {
+			$sheet->setCellValue('B' . $a, $c['nama_barang']);
+			$sheet->setCellValue('C' . $a, $c['penjualan']);
+			$a++;
+		}
+		$write = new Xlsx($spreadsheet);
+		$write->save("php://output");
+		redirect('Lpenjualan');
+	}
+
 	function simpanPenjualan()
 	{
 		$data = [
@@ -37,4 +68,9 @@ class Lpenjualan extends CI_Controller {
 		redirect('Lpenjualan');
 	}
 
+	function delete($where)
+	{
+		$data['laporan_penjualan'] = $this->Model_Lpenjualan->deleteLP($where);
+		redirect('Lpenjualan');
+	}
 }

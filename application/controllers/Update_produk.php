@@ -1,19 +1,25 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Update_produk extends CI_Controller {
+class Update_produk extends CI_Controller
+{
+    public function __construct()
+    {
+        parent::__construct();
+        cek_login();
+    }
 
-	public function index()
-	{
+    public function index()
+    {
 
-		$data['kategori'] = $this->Model_produk->getKategori();
-		$config['upload_path'] = './assets/img/upload/';
+        $data['kategori'] = $this->Model_produk->getKategori();
+        $config['upload_path'] = './assets/img/upload/';
         $config['allowed_types'] = 'jpg|png|jpeg';
         $config['max_size'] = '3000';
         $config['max_width'] = '1024';
         $config['max_height'] = '1000';
         $config['file_name'] = 'img' . time();
-		
+
         $this->form_validation->set_rules('nama_barang', 'Nama Barang', 'required', [
             'required' => 'Nama Barang harus diisi'
         ]);
@@ -26,20 +32,20 @@ class Update_produk extends CI_Controller {
             'numeric' => 'Harga Harus Diisi Dengan Angka'
         ]);
 
-        
+
         $this->form_validation->set_rules('stock', 'Stock', 'required|numeric', [
             'required' => 'Stock Harus Disi',
             'numeric' => 'Stock Harus Diisi Dengan Angka'
         ]);
 
-		$this->load->library('upload', $config);
+        $this->load->library('upload', $config);
 
-		if ($this->form_validation->run() == false) {
-			$this->load->view('templates/base_dashboard/header');
-			$this->load->view('templates/base_dashboard/sidebar');
-			$this->load->view('templates/base_dashboard/topbar');
-			$this->load->view('dashboard/update_produk', $data);
-			$this->load->view('templates/base_dashboard/footer');
+        if ($this->form_validation->run() == false) {
+            $this->load->view('templates/base_dashboard/header');
+            $this->load->view('templates/base_dashboard/sidebar');
+            $this->load->view('templates/base_dashboard/topbar');
+            $this->load->view('dashboard/update_produk', $data);
+            $this->load->view('templates/base_dashboard/footer');
         } else {
             if ($this->upload->do_upload('image')) {
                 $image = $this->upload->data();
@@ -56,8 +62,6 @@ class Update_produk extends CI_Controller {
             ];
             $this->Model_produk->simpanBarang($data);
             redirect('Produk');
-			}
-
-
-	}
+        }
+    }
 }

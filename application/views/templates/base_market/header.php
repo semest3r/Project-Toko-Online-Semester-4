@@ -20,4 +20,4 @@
 </head>
 
 <body>
-    <div class="mx-auto flex flex-row min-h-full ">
+    <div class="mx-auto flex flex-row min-h-full border-collapse">

@@ -132,7 +132,8 @@ class Checkout extends CI_Controller {
         $this->email->message($this->load->view('email_template', $data, true));
         $this->email->set_mailtype('html');
         if ($this->email->send()) {
-            $this->load->view('market/checkout_sukses');
+            $data['checkout'] = $transaksi;
+            $this->load->view('market/checkout_sukses', $data);
         } else {
             show_error($this->email->print_debugger());
         }

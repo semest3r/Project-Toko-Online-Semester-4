@@ -3,7 +3,9 @@
                     © 2022 Toko Electrik™. All Rights Reserved.
                 </p>
             </div>
+            <!-- Batas -->
             </div>
+            <!-- Batas -->
             </div>
             <!-- script untuk flowbite -->
             <script src="https://unpkg.com/flowbite@1.4.7/dist/flowbite.js"></script>
@@ -29,7 +31,9 @@
                         label: "Monthly Transaction",
                         backgroundColor: "hsl(252, 82.9%, 67.8%)",
                         borderColor: "hsl(252, 82.9%, 67.8%)",
-                        data: [<?php foreach($bulan as $b){ echo $b['banyak_transaksi'].',';}?>],
+                        data: [<?php foreach ($bulan as $b) {
+                                    echo $b['banyak_transaksi'] . ',';
+                                } ?>],
                     }, ],
                 };
 

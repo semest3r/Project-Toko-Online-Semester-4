@@ -13,9 +13,9 @@
 <body>
     <div class="container mx-auto">
         <div class="grid justify-self-stretch">
-            <div class="w-1/2 justify-self-center border border-slate-500 p-5 rounded-md">
+            <div class="h-[6rem]"></div>
+            <div class="w-1/2 pt-10 justify-self-center border border-slate-500 p-5 rounded-md">
                 <form action="<?= base_url('Login') ?>" method="POST" class="w-3/4 mx-auto">
-                    <div class="h-[6rem]"></div>
                     <?= $this->session->flashdata('pesan'); ?>
                     <div class="mb-6 pt-5">
                         <label for="username" class="block mb-2 text-sm font-medium text-gray-900 ">Your Username</label>

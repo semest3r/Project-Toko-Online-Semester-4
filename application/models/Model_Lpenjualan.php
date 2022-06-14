@@ -16,6 +16,7 @@ class Model_Lpenjualan extends CI_Model
         $this->db->select('user.*, laporan_penjualan.*');
         $this->db->from('laporan_penjualan');
         $this->db->join('user', 'user.id = laporan_penjualan.id_user');
+        $this->db->order_by('laporan_penjualan.Date', 'DESC');
         return $this->db->get('')->result_array();
     }
 
@@ -28,6 +29,7 @@ class Model_Lpenjualan extends CI_Model
         $this->db->group_by('nama_barang');
         return $this->db->get_where('', $where)->result_array();
     }
+    
     public function simpanPenjualan($data = null)
     {
         $this->db->insert('laporan_penjualan', $data);
@@ -40,5 +42,11 @@ class Model_Lpenjualan extends CI_Model
         $this->db->from('laporan_penjualan');
         $this->db->group_by('bulan');
         return $this->db->get('')->result_array();
+    }
+
+    public function deleteLP($where)
+    {
+        $this->db->where('id', $where);
+        $this->db->delete('laporan_penjualan');
     }
 }

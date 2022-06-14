@@ -2,7 +2,13 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 
 class User extends CI_Controller
-{
+{	
+        public function __construct()
+        {
+            parent::__construct();
+            cek_login();
+        }
+    
         public function index()
         {
                 $data['user'] = $this->Model_user->getAllUser();
@@ -55,5 +61,10 @@ class User extends CI_Controller
                         $this->Model_user->simpanUser($data);
                         redirect('User');
                 }
+        }
+        public function delete($where)
+        {
+                $data['user'] = $this->Model_user->deleteUser($where);
+                redirect('user');
         }
 }

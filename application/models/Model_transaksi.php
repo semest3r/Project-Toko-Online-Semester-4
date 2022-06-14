@@ -16,19 +16,11 @@ class Model_transaksi extends CI_Model
             $this->db->like('pembeli.name', $keyword);
             $this->db->or_like('user.name', $keyword);
         }
-        $this->db->order_by('transaksi.id');
+        $this->db->order_by('transaksi.id', 'DESC');
 
         return $this->db->get('', $limit, $start)->result_array();
     }
-    //getDetailTransaksi digunakan untuk menampilkan data table join transaksi, pembeli, dan user berdasarkan "id" dari table transaksi
-    public function getDetailTransaksi($where)
-    {
-        $this->db->select('transaksi.id AS idtransaksi, user.name AS nama_user, pembeli.id AS idpembeli, pembeli.name AS nama_pembeli, pembeli.notelp AS notelp_pembeli, pembeli.email AS email_pembeli, pembeli.alamat AS alamat_pembeli, transaksi.status, transaksi.date');
-        $this->db->from('transaksi');
-        $this->db->join('pembeli', 'pembeli.id = transaksi.id_pembeli', 'inner');
-        $this->db->join('user', 'user.id = transaksi.id_user', 'inner');
-        return $this->db->get_where('', $where)->result_array();
-    }
+
     //terdapat pada function spreadsheet_export()
     //getAlltransaksi digunakan untuk menampilkan data table join transaksi, pembeli, dan user berdasarkan "id" dari table transaksi
     public function getAlltransaksi()
@@ -49,6 +41,15 @@ class Model_transaksi extends CI_Model
         $this->db->join('barang', 'barang.id = checkout.id_barang', 'inner');
         return $this->db->get_where('', $where)->result_array();
     }
+    //getDetailTransaksi digunakan untuk menampilkan data table join transaksi, pembeli, dan user berdasarkan "id" dari table transaksi
+    public function getDetailTransaksi($where)
+    {
+        $this->db->select('transaksi.id AS idtransaksi, user.name AS nama_user, pembeli.id AS idpembeli, pembeli.name AS nama_pembeli, pembeli.notelp AS notelp_pembeli, pembeli.email AS email_pembeli, pembeli.alamat AS alamat_pembeli, transaksi.status, transaksi.date');
+        $this->db->from('transaksi');
+        $this->db->join('pembeli', 'pembeli.id = transaksi.id_pembeli', 'inner');
+        $this->db->join('user', 'user.id = transaksi.id_user', 'inner');
+        return $this->db->get_where('', $where)->result_array();
+    }
     //getUser digunakan untuk menapilkan data table user
     public function getUser()
     {
@@ -63,4 +64,8 @@ class Model_transaksi extends CI_Model
         $this->db->join('user', 'user.id = transaksi.id_user', 'inner');
         $this->db->update('transaksi', $data, $where);
     }
+
+    //downloadTransaksi digunakan mendownload data pembeli
+
+
 }

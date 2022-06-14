@@ -8,7 +8,7 @@ class Model_market extends CI_Model
         $this->barang = 'barang';
         $this->kategori = 'kategori';
     }
-    //MODEL DATABASE UNTUK CONTROLLER Edit_produk
+    //MODEL DATABASE UNTUK CONTROLLER Market
     //getMarketProduk digunakan untuk memanggil data table barang jika berdasarkan id row_array jikatidak result_array
     public function getMarketProduk($id = '')
     {
@@ -90,5 +90,29 @@ class Model_market extends CI_Model
     public function getKurir()
     {
         return $this->db->get('kurir')->result_array();
+    }
+
+    //MODEL DATABASE PADA CONTROLLER Edit_transaksi
+    //getTransaksiSukses 
+    public function getTransaksiSukses($id)
+    {
+        $this->db->select('pembeli.*, transaksi.*');
+        $this->db->from('transaksi');
+        $this->db->join('pembeli', 'pembeli.id = transaksi.id_pembeli');
+        $this->db->where('pembeli.id', $id);
+        return $this->db->get('')->row_array();
+    }
+
+    public function getKategori()
+    {
+        return $this->db->get('kategori')->result_array();
+    }
+
+    public function getBarang($id)
+    {
+        $this->db->select('barang.*, kategori.*');
+        $this->db->from('barang');
+        $this->db->join('kategori', 'kategori.id = barang.id_kategori', 'inner');
+        return $this->db->get_where('', $id)->result_array();
     }
 }

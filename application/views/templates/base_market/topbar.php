@@ -1,9 +1,9 @@
-<div class="container">
+<div class="container border-collapse">
     <div class="grid grid-cols-3 h-20 bg-white border-b-2 border-slate-400">
         <div class="col-span-2 self-center w-full">
             <div class="p-2">
                 <form action="" class="flex">
-                    <input type="text" class="mx-2 ml-10 rounded-md w-[80%] h-8" placeholder="Search Here">
+                    <input type="text" class="mx-2 ml-10 rounded-md w-[80%] h-8" placeholder="Maintenance Still Update">
                     <button class="border px-2 rounded-md">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
