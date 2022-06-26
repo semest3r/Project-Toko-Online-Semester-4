@@ -57,7 +57,7 @@
                                     <?= $c['total_barang']; ?>
                                 </td>
                                 <td class="border border-slate-700 py-1">
-                                    <?= $c['total_harga_barang']; ?>
+                                   Rp. <?= $c['total_harga_barang']; ?>
                                 </td>
                             </tr>
 

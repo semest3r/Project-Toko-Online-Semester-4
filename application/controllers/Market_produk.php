@@ -20,15 +20,15 @@ class Market_produk extends CI_Controller
 	{
 		$barang = $this->Model_market->getMarketProduk($barangID);
 		$data = array(
-			'id' => $barang['id'],
+			'id' => $barang['id_barang'],
 			'qty' => 1,
 			'name' => $barang['nama_barang'],
 			'price' => $barang['harga'],
 		);
 
 		$this->cart->insert($data);
-
-		redirect('Market_produk');
+		redirect('market_produk');	
+		
 	}
 
 	public function kategori()

@@ -12,7 +12,7 @@ class Model_market extends CI_Model
     //getMarketProduk digunakan untuk memanggil data table barang jika berdasarkan id row_array jikatidak result_array
     public function getMarketProduk($id = '')
     {
-        $this->db->select('*');
+        $this->db->select('barang.id as id_barang, barang.nama_barang, barang.stock, barang.harga, barang.image, barang.id_kategori');
         $this->db->from($this->barang);
         if ($id) {
             $this->db->where('id', $id);
@@ -110,7 +110,7 @@ class Model_market extends CI_Model
 
     public function getBarang($id)
     {
-        $this->db->select('barang.*, kategori.*');
+        $this->db->select('barang.id as id_barang, barang.nama_barang, barang.stock, barang.harga, barang.image, kategori.*');
         $this->db->from('barang');
         $this->db->join('kategori', 'kategori.id = barang.id_kategori', 'inner');
         return $this->db->get_where('', $id)->result_array();
