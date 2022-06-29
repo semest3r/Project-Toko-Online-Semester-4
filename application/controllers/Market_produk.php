@@ -27,7 +27,7 @@ class Market_produk extends CI_Controller
 		);
 
 		$this->cart->insert($data);
-		redirect('market_produk');	
+		redirect('market_produk');
 		
 	}
 

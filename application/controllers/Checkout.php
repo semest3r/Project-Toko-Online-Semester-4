@@ -162,5 +162,18 @@ class Checkout extends CI_Controller {
 
     }
 
+	public function pdfDownload()
+	{
+		$data = array();
+        $data['transaksi'] = $this->Model_transaksi->getDetailTransaksi(['transaksi.id' => $this->uri->segment(3)]);
+		$data['checkout'] = $this->Model_transaksi->getDetailCheckout(['id_transaksi' => $this->uri->segment(3)]);
+		$this->load->view('user_list', $data);
+        $html = $this->output->get_output();
+        $this->load->library('pdf');
+        $this->dompdf->loadHtml($html);
+        $this->dompdf->setPaper('A4', 'landscape');
+        $this->dompdf->render();
+        $this->dompdf->stream("welcome.pdf", array("Attachment" => 0));
+	}
     
 }

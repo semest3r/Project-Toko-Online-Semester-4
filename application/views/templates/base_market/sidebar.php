@@ -28,8 +28,8 @@
                 </ul>
             </li>
             <li class="border-b border-slate-400">
-                <a href="#" class="flex items-center p-2 text-base font-semibold  text-gray-800  hover:bg-gray-300">
-                    <span class="ml-3">About Us</span>
+                <a href="<?= base_url('Konfirmasi') ?>" class="flex items-center p-2 text-base font-semibold  text-gray-800  hover:bg-gray-300">
+                    <span class="ml-3">Konfirmasi</span>
                 </a>
             </li>
         </ul>

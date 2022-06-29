@@ -12,4 +12,6 @@ Detail Pesanan :<br>
 Nama Barang = <?php echo $item['nama_barang'] ?><br>
 Quantity = <?php echo $item['total_barang'] ?><br>
 Sub Total = <?php echo $item['total_harga_barang'] ?><br>
+
+Link : localhost/tailwind/Checkout/pdfDownload/<?php echo $transaksi['id'];?>
 <?php }?>

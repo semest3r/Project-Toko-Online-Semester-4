@@ -28,6 +28,7 @@
     <h3>Bukti Pembelian Barang</h3>
     <?php foreach ($transaksi as $row) { ?>
         <div align="center">
+            <p>ID Transaksi : <?php echo $row['idtransaksi'] ?></p>
             <p>Nama Pembeli : <?php echo $row['nama_pembeli'] ?></p>
             <p>Nomor Telepon : <?php echo $row['notelp_pembeli'] ?></p>
             <p>Alamat : <?php echo $row['alamat_pembeli']; ?></p>

@@ -40,7 +40,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($transaksi as $st) : ?>
+                            <?php foreach ($transaksi as $st){ ?>
+                                <?php if ($st['status_konfirmasi'] == 1 ){?>
                                 <tr class="t">
                                     <td class="px-5 py-5 border-b border-gray-200  text-sm">
                                         <div class="items-center px-2">
@@ -114,7 +115,8 @@
                                         </a>
                                     </td>
                                 </tr>
-                            <?php endforeach ?>
+                                <?php } else { echo "Belum Ada Transaksi"; } ?>
+                            <?php } ?>
                         </tbody>
                     </table>
                     <div class="px-5  py-5 flex flex-col xs:flex-row items-center xs:justify-between">

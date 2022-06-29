@@ -57,7 +57,7 @@
                                     <?= $c['total_barang']; ?>
                                 </td>
                                 <td class="border border-slate-700 py-1">
-                                   Rp. <?= $c['total_harga_barang']; ?>
+                                    Rp. <?= $c['total_harga_barang']; ?>
                                 </td>
                             </tr>
 
@@ -79,7 +79,13 @@
                 <a class="px-5 mx-5 py-2 border border-blue-500 hover:border-2 rounded-sm" href="<?= base_url('Market') ?>">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 font-semibold inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M12.066 11.2a1 1 0 000 1.6l5.334 4A1 1 0 0019 16V8a1 1 0 00-1.6-.8l-5.333 4zM4.066 11.2a1 1 0 000 1.6l5.334 4A1 1 0 0011 16V8a1 1 0 00-1.6-.8l-5.334 4z" />
-                    </svg><span class="inline-block">Ke Belanja</span></a>
+                    </svg><span class="inline-block">Ke Belanja</span>
+                </a>
+                <a class="px-5 mx-5 py-2 border border-blue-500 hover:border-2 rounded-sm" href="<?= base_url('Checkout/pdfDownload/'). $transaksi['id']; ?>">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 font-semibold inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12.066 11.2a1 1 0 000 1.6l5.334 4A1 1 0 0019 16V8a1 1 0 00-1.6-.8l-5.333 4zM4.066 11.2a1 1 0 000 1.6l5.334 4A1 1 0 0011 16V8a1 1 0 00-1.6-.8l-5.334 4z" />
+                    </svg><span class="inline-block">Download</span>
+                </a>
             </div>
         </div>
 

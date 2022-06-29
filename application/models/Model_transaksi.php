@@ -7,10 +7,11 @@ class Model_transaksi extends CI_Model
     //getTransaksi digunakan untuk menampilkan data table join transaksi, pembeli, user dari table transaksi
     public function getTransaksi($limit, $start, $keyword = null)
     {
-        $this->db->select('transaksi.id AS idtransaksi, user.name AS nama_user, pembeli.id AS idpembeli, pembeli.name AS nama_pembeli, pembeli.notelp AS notelp_pembeli, pembeli.email AS email_pembeli, pembeli.alamat AS alamat_pembeli, transaksi.status, transaksi.date`');
+        $this->db->select('transaksi.id AS idtransaksi, user.name AS nama_user, pembeli.id AS idpembeli, pembeli.name AS nama_pembeli, pembeli.notelp AS notelp_pembeli, pembeli.email AS email_pembeli, pembeli.alamat AS alamat_pembeli, transaksi.status, transaksi.date, konfirmasi.*');
         $this->db->from('transaksi');
         $this->db->join('pembeli', 'pembeli.id = transaksi.id_pembeli', 'inner');
         $this->db->join('user', 'user.id = transaksi.id_user', 'inner');
+        $this->db->join('konfirmasi', 'konfirmasi.id_transaksi = transaksi.id', 'inner');        
 
         if ($keyword) {
             $this->db->like('pembeli.name', $keyword);
@@ -65,7 +66,10 @@ class Model_transaksi extends CI_Model
         $this->db->update('transaksi', $data, $where);
     }
 
-    //downloadTransaksi digunakan mendownload data pembeli
+    public function simpanKonfirmasi($data = null)
+    {
+        $this->db->insert('konfirmasi', $data);
+    }
 
 
 }
