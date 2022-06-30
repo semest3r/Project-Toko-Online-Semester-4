@@ -11,15 +11,23 @@
 
 <body>
     <div class="min-h-screen">
-        <?php if (validation_errors()) :  ?>
-            <?= validation_errors(); ?>
-        <?php endif ?>
         <div class="h-[7rem]"></div>
         <div class="container">
             <div class="w-1/2 mx-auto p-5 border-2 rounded-md relative">
+                <div class="text-center">
+                    <?php if (validation_errors()) :  ?>
+                        <div class="flex p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800" role="alert">
+                            <svg class="inline flex-shrink-0 mr-3 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                            </svg>
+                            <div>
+                                <span class="font-medium"><?= validation_errors(); ?></span>
+                            </div>
+                        </div>
+                    <?php endif ?>
+                </div>
                 <div class="w-9 h-9 flex absolute -top-3 -left-3 bg-pink-200 rounded-full ">
                     <a class="text-red-700 hover:text-red-300" href="<?= base_url('Cart'); ?>"><span class="iconify w-9 h-9" data-icon="akar-icons:circle-x"></span></a>
-
                 </div>
                 <form action="<?= base_url('Checkout') ?>" method="post">
                     <div class="pt-5 relative z-0 w-full mb-6 group">
