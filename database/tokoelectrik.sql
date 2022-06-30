@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 19 Jun 2022 pada 21.01
+-- Waktu pembuatan: 30 Jun 2022 pada 14.57
 -- Versi server: 10.4.21-MariaDB
 -- Versi PHP: 8.0.10
 
@@ -61,10 +61,14 @@ CREATE TABLE `barang` (
 --
 
 INSERT INTO `barang` (`id`, `id_kategori`, `nama_barang`, `stock`, `harga`, `image`) VALUES
-(1, 8, 'obeng 7pcs', 100, 67000, 'img1655639696.jpg'),
+(1, 8, 'obeng 7pcs', 102, 67000, 'img1655639696.jpg'),
 (2, 6, 'Lampu Led 20W', 100, 35000, 'img1655639725.jpg'),
 (3, 9, 'Kabel Roll 4 Lubang', 100, 450000, 'img1655639783.jpg'),
-(4, 9, 'Stop Kontak Dinding 1 Lubang', 100, 25000, 'img1655639864.jpg');
+(4, 9, 'Stop Kontak Dinding 1 Lubang', 100, 25000, 'img1655639864.jpg'),
+(6, 7, 'Kabel 50 Meter', 100, 1000000, 'img1656430091.jpg'),
+(7, 5, 'Solder', 100, 35000, 'img1656430139.jpg'),
+(8, 3, 'Drill Impact 13mm', 100, 650000, 'img1656430169.jpg'),
+(9, 6, 'kabel', 30, 5000, 'img1656591264.png');
 
 -- --------------------------------------------------------
 
@@ -86,7 +90,11 @@ CREATE TABLE `checkout` (
 --
 
 INSERT INTO `checkout` (`id`, `id_transaksi`, `id_barang`, `total_barang`, `total_harga_barang`, `date`) VALUES
-(0, 1, 1, 1, 67000, '2022-06-19');
+(1, 1, 1, 1, 67000, '2022-06-19'),
+(2, 4, 2, 1, 35000, '2022-06-27'),
+(3, 5, 3, 1, 450000, '2022-06-27'),
+(4, 6, 8, 2, 1300000, '2022-06-30'),
+(5, 6, 3, 3, 1350000, '2022-06-30');
 
 -- --------------------------------------------------------
 
@@ -110,7 +118,28 @@ INSERT INTO `kategori` (`id`, `nama_kategori`) VALUES
 (6, 'Lampu'),
 (7, 'Kabel'),
 (8, 'Perkakas'),
-(9, 'Terminal');
+(9, 'Terminal'),
+(10, 'test kategori');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `konfirmasi`
+--
+
+CREATE TABLE `konfirmasi` (
+  `id` int(11) NOT NULL,
+  `id_transaksi` int(11) NOT NULL,
+  `status_konfirmasi` int(2) NOT NULL,
+  `image` varchar(255) NOT NULL DEFAULT 'default.jpg'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `konfirmasi`
+--
+
+INSERT INTO `konfirmasi` (`id`, `id_transaksi`, `status_konfirmasi`, `image`) VALUES
+(4, 1, 1, 'default.jpg');
 
 -- --------------------------------------------------------
 
@@ -131,7 +160,8 @@ CREATE TABLE `kurir` (
 INSERT INTO `kurir` (`id`, `nama_kurir`, `kode_kurir`) VALUES
 (1, 'ANTERIN', 1),
 (2, 'SiNgebut', 2),
-(3, 'J DAN T', 3);
+(3, 'J DAN T', 3),
+(4, 'test kurir', 12);
 
 -- --------------------------------------------------------
 
@@ -145,7 +175,7 @@ CREATE TABLE `laporan_penjualan` (
   `banyak_transaksi` int(128) NOT NULL,
   `total_pemasukan` int(255) NOT NULL,
   `deskripsi` text NOT NULL,
-  `date` date NOT NULL
+  `date` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -176,7 +206,12 @@ CREATE TABLE `pembeli` (
 --
 
 INSERT INTO `pembeli` (`id`, `name`, `email`, `notelp`, `alamat`, `date`) VALUES
-(1, 'test', 'test@test.com', '089602734690', 'test', '2022-06-19');
+(1, 'test', 'test@test.com', '089602734690', 'test', '2022-06-19'),
+(2, 'Dhio', 'Dhio@test.com', '0812345678', 'jl. test test test', '2022-06-27'),
+(3, 'asd', 'asdasd@test.test', '089602734690', 'asdasd', '2022-06-27'),
+(4, 'asd', 'asdasd@test.test', '089602734690', 'asdasd', '2022-06-27'),
+(5, 'asdsad', 'asdasd@test.test', '089602734690', 'asdas', '2022-06-27'),
+(6, 'test', 'test@test.com', '089602734690', 'test test test', '2022-06-30');
 
 -- --------------------------------------------------------
 
@@ -220,7 +255,12 @@ CREATE TABLE `transaksi` (
 --
 
 INSERT INTO `transaksi` (`id`, `id_pembeli`, `id_user`, `id_kurir`, `total_harga`, `status`, `date`, `date_transaksi`) VALUES
-(1, 1, 2, 1, 67000, 2, '2022-06-19', '2022-06-19');
+(1, 1, 2, 1, 67000, 3, '2022-06-19', '2022-06-19'),
+(2, 2, 1, 1, 510000, 1, '2022-06-27', '2022-06-27'),
+(3, 3, 1, 1, 35000, 1, '2022-06-27', '2022-06-27'),
+(4, 4, 1, 1, 35000, 1, '2022-06-27', '2022-06-27'),
+(5, 5, 1, 1, 450000, 1, '2022-06-27', '2022-06-27'),
+(6, 6, 1, 4, 2650000, 1, '2022-06-30', '2022-06-30');
 
 -- --------------------------------------------------------
 
@@ -248,7 +288,8 @@ INSERT INTO `user` (`id`, `role_id`, `username`, `password`, `name`, `nip`, `id_
 (2, 1, 'faizy', '$2y$10$QW0rPhv/Z2G1mZmhjSf03uTgbYW6uaGvEk8YUfnNFdjJWnoHmb6iq', 'faizy', 19200903, 1, '2022-05-29 18:25:16'),
 (3, 2, 'haniah', '$2y$10$gG2jQlGggOjLRpeuJ/1VSOsSMYsH7drb9RitKN2cxBNjUJwhUmaKu', 'haniah', 0, 1, '2022-05-29 18:25:16'),
 (4, 2, 'dhio', '$2y$10$c91r94GOTswrjOfWWA7wqefyv0Is86lds9JrNKV3fjfjbd4tRfujO', 'dhio', 0, 1, '2022-05-29 18:27:07'),
-(5, 2, 'djanuardi', '$2y$10$jGODjEa97RvuidIabsLHLOmUmACTqJePlqnFZnxP.ZD/B.NdLr/ta', 'djanuardi', 0, 1, '2022-05-29 18:27:56');
+(5, 2, 'djanuardi', '$2y$10$jGODjEa97RvuidIabsLHLOmUmACTqJePlqnFZnxP.ZD/B.NdLr/ta', 'djanuardi', 0, 1, '2022-05-29 18:27:56'),
+(9, 2, 'test3', 'test3', 'test test', 123456, 1, '2022-06-30 12:21:55');
 
 --
 -- Indexes for dumped tables
@@ -280,6 +321,13 @@ ALTER TABLE `checkout`
 --
 ALTER TABLE `kategori`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `konfirmasi`
+--
+ALTER TABLE `konfirmasi`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id_transaksi` (`id_transaksi`);
 
 --
 -- Indeks untuk tabel `kurir`
@@ -337,31 +385,43 @@ ALTER TABLE `aktifasi`
 -- AUTO_INCREMENT untuk tabel `barang`
 --
 ALTER TABLE `barang`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT untuk tabel `checkout`
+--
+ALTER TABLE `checkout`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `kategori`
 --
 ALTER TABLE `kategori`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT untuk tabel `konfirmasi`
+--
+ALTER TABLE `konfirmasi`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `kurir`
 --
 ALTER TABLE `kurir`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `laporan_penjualan`
 --
 ALTER TABLE `laporan_penjualan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `pembeli`
 --
 ALTER TABLE `pembeli`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `role`
@@ -373,13 +433,13 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT untuk tabel `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
